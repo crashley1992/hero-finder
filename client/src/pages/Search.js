@@ -38,14 +38,6 @@ class Search extends Component {
           randomHero = () => {
             axios.get('/random/comic-json')
             .then( (response)  => {
-              // console.log(response.data)
-              // console.log(response.data.id)
-              // console.log(response.data.name)
-              // console.log(response.data.biography.aliases)
-              // console.log(response.data.publisher)
-              // console.log(response.data.work.base)
-              // console.log(response.data.connections)
-              // console.log(response.data.image.url)
               this.setState({
                 randomResult: response.data,
                 randomDataLoaded: true
