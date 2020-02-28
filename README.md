@@ -1,6 +1,5 @@
 # comic-hero-finder
-Link to deployed site: https://rocky-headland-64193.herokuapp.com/
-
+Link to deployed site: https://shrouded-woodland-60395.herokuapp.com/
 This is a comic-hero finder app. Users can type in a hero and a search will be ran using https://superheroapi.com/ API. 
 
 Expected output: 
