@@ -14,6 +14,7 @@ class Search extends Component {
         nameInput: '',
         heroes: [],
         dataLoaded: false,
+        randomDataLoaded: false,
         //Section for random results
         randomResult: {}
       }
@@ -47,7 +48,7 @@ class Search extends Component {
               // console.log(response.data.image.url)
               this.setState({
                 randomResult: response.data,
-                dataLoaded: true
+                randomDataLoaded: true
               })
               console.log(this.state.randomResult)
             })
@@ -123,7 +124,7 @@ class Search extends Component {
                         base={hero.work.base}
                     /> 
                     )) : null}
-                    {this.state.dataLoaded ? 
+                    {this.state.randomDataLoaded ? 
                     <RandomResults 
                       key={this.state.randomResult.id}
                       name={this.state.randomResult.name}
