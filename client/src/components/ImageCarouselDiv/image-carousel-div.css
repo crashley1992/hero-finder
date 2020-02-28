@@ -1,0 +1,76 @@
+.carousel {
+    width: 100%;
+    background-color: #2D2E2E;
+}
+
+.d-block {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.carousel-caption {
+    position: relative;
+    left: auto;
+    right: auto;
+    color: white;
+    font-weight: bold;
+}  
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 300px) { 
+    .carousel {
+        height: 300px;
+    }
+    .d-block {
+        height: 200px;
+        width: 100%;
+    }
+
+    .slide-captions {
+        border: black solid 2px;
+        background-color: black;
+        height: 100px;
+        padding-top: 10px;
+    }
+ }
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .carousel {
+        height: 600px;
+    }
+    
+    .d-block {
+        height: 500px;
+        width: 100%;
+    }
+
+    .slide-captions {
+        border: black solid 2px;
+        background-color: black;
+        height: 100px;
+        padding-top: 10px;
+    }
+ }
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+    .carousel {
+        height: 700px;
+    }
+    
+    .d-block {
+        height: 600px;
+        width: 100%;
+    }
+    
+    .slide-captions {
+        border: black solid 2px;
+        background-color: black;
+        height: 100px;
+        padding-top: 10px;
+    }
+ }
+
+
+
+ 
