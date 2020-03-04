@@ -3,8 +3,7 @@ const cors = require('cors')
 const path = require('path');
 const proxy = require('http-proxy-middleware')
 const fs = require('fs')
-
-
+const mongoose = require('mongoose');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -30,6 +29,10 @@ if (process.env.NODE_ENV === "production" || process.env.NODE_ENV === 'staging')
       );
   });
 }
+
+// Connect to the Mongo DB
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/SavedHeroes";
+mongoose.connect(MONGODB_URI);
 
 app.listen(PORT, () => {
   console.log("App now listening at localhost:" + PORT);
