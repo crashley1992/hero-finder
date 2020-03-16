@@ -2,13 +2,14 @@ import React, { Component } from "react";
 import Card from 'react-bootstrap/Card'
 import "./hero-result.css"
 import { FaHeart } from 'react-icons/fa';
+import axios from 'axios';
 
 class HeroResults extends Component {
 
     state = {
         liked: true
     }
-
+//handle for when hero is liked, should save info to mongodb
     handleLiked = () => {
         this.setState({
             liked: !this.state.liked

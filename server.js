@@ -10,6 +10,9 @@ const PORT = process.env.PORT || 3001;
 
 const routes = require('./routes');
 
+//Configure mongoose's promise to global promise
+mongoose.promise = global.Promise;
+
 //middleware setup
 app.use(cors())
 app.use(proxy(['http://localhost:3001' ], { target: '/api/comic-json' }));

@@ -13,7 +13,7 @@ const NavTabs = () => {
            <Navbar.Collapse id="basic-navbar-nav">
            <Nav className="mr-auto">
              <Nav.Link href="/">Home</Nav.Link>
-             <Nav.Link href="/savedHeroes">Liked Heroes</Nav.Link>
+             {/* <Nav.Link href="/savedHeroes">Liked Heroes</Nav.Link> */}
              <Nav.Link href="/search">Search Heroes</Nav.Link>
            </Nav>
        </Navbar.Collapse>
