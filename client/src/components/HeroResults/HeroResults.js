@@ -14,26 +14,20 @@ class HeroResults extends Component {
         this.setState({
             liked: !this.state.liked
         })
-        // console.log(this.props.name + "******handled liked")
-        // console.log(this.props.image)
-        //sending liked hero info to MongoDB
-        const data = {
-            'name': this.props.name,
-            'link': this.props.image
-        }
+        //sending liked hero info to /api/savedhero so MongoDB can save it
         axios({
             method: 'POST', 
             contentType: "application/json",
             crossDomain: true,
             url: '/api/savedhero',
             data: { 
-              data: data
+              name: this.props.name,
+              link: this.props.image
             },
             headers: {
               'Access-Control-Allow-Origin': '*',
               'Access-Control-Allow-Methods': 'GET, POST, PUT, OPTIONS'
             }   
-    
         })
     }
 

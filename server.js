@@ -9,6 +9,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 const routes = require('./routes');
+const savedHeroRoute = require('./routes/savedHeroRoute');
 
 //Configure mongoose's promise to global promise
 mongoose.promise = global.Promise;
@@ -20,6 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //Routes
+app.use(savedHeroRoute);
 app.use(routes);
 
 // Static assets
