@@ -4,11 +4,12 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 //determining datatype in collection
-const HeroSchema = new Schema({
-    name: String
-})
+const HeroesSchema = new Schema({
+    name: String,
+    link: String
+});
 
 //creating collection  for Heroes
-const Hero = mongoose.model('Hero', HeroSchema);
+const Heroes = mongoose.model('Heroes', HeroesSchema);
 
-module.exports = Hero;
+module.exports = Heroes;
