@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-var cors = require('cors')
+const cors = require('cors')
 //require axios to make Node call API
 const axios = require('axios');
 
