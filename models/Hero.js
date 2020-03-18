@@ -5,8 +5,12 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 //determining datatype in collection
 const HeroesSchema = new Schema({
-    name: String,
-    link: String
+    name: {
+        type: String,
+    },
+    link: {
+        type: String
+    }
 });
 
 //creating collection  for Heroes

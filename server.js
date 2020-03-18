@@ -8,9 +8,12 @@ const mongoose = require('mongoose');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+//routes for comic api and database
 const routes = require('./routes');
 const savedHeroRoute = require('./routes/savedHeroRoute');
 
+//imports database model
+const db = require('./models/Hero')
 //Configure mongoose's promise to global promise
 mongoose.promise = global.Promise;
 
