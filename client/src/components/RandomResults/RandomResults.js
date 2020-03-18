@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Card from 'react-bootstrap/Card'
 import { FaHeart } from 'react-icons/fa';
+import axios from 'axios';
 
 class RandomResults extends Component {
 
@@ -12,6 +13,23 @@ class RandomResults extends Component {
         this.setState({
             liked: !this.state.liked
         })
+        const data = {
+            'name': this.props.name,
+            'link': this.props.image,
+            'id': this.props.id
+        }
+        //sending liked hero info to /api/savedhero so MongoDB can save it
+        axios({
+            method: 'POST', 
+            contentType: "application/json",
+            crossDomain: true,
+            url: '/api/savedhero',
+            data: data,
+            headers: {
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Methods': 'GET, POST, PUT, OPTIONS'
+            }   
+        }, console.log(" ********user liked"))
     }
 
     render() {

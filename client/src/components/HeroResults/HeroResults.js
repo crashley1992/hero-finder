@@ -16,7 +16,8 @@ class HeroResults extends Component {
         })
         const data = {
             'name': this.props.name,
-            'link': this.props.image
+            'link': this.props.image,
+            'id': this.props.id
         }
         //sending liked hero info to /api/savedhero so MongoDB can save it
         axios({
