@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
+import LikedHeroes from '../components/LikedHeroes/LikedHeroes';
+import NoHeroes from '../components/NoHeroes/NoHeroes';
 class SavedHeroes extends Component {
     state = {
         heroes: [],
@@ -21,8 +22,16 @@ class SavedHeroes extends Component {
 
     render() {
         return(
-            <div>
-                <h1>{this.state.heroes}</h1>
+            <div className="hero-section">
+                <h1>Heroes</h1>
+                {this.state.heroes.map(hero => (
+                    <LikedHeroes 
+                    key={hero._id}
+                    name={hero.name}
+                    class={hero.class}
+                    level={hero.level}
+                    /> 
+                )) } : <NoHeroes />
             </div>
         )
     }

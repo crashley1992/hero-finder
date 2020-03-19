@@ -7,10 +7,9 @@ const router = express.Router();
 const controller = require('../controller/heroesController');
 
 //post route that holds data when hero is liked
-//     console.log(req.body.name + ' ****mongo***');
-//     console.log(req.body.link)
-//     console.log(req.body.id);
 router.post('/api/savedhero', controller.create);
 
+//get heroes
+router.get("/:id", controller.findAll);
 
 module.exports = router;
