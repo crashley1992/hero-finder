@@ -9,7 +9,9 @@ const controller = require('../controller/heroesController');
 //post route that holds data when hero is liked
 router.post('/api/savedhero', controller.create);
 
-//get heroes
+router.get('/api/savedhero', controller.find);
+
+//get heroes by id
 router.get("/:id", controller.findAll);
 
 module.exports = router;

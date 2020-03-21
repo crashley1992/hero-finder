@@ -11,10 +11,10 @@ class SavedHeroes extends Component {
     }
 
     componentDidMount() {
-        axios.get('/api/savedhero'+this.props.id)
+        axios.get('/api/savedhero')
             .then(response => {
                 this.setState({ heroes: response.data })
-                // console.log(this.state.heroes)
+                console.log(this.state.heroes)
             }).catch((err) => {
                 console.log(err);
             })
@@ -23,13 +23,12 @@ class SavedHeroes extends Component {
     render() {
         return(
             <div className="hero-section">
-                <h1>Heroes</h1>
+                <h1 style={{textAlign: 'center', color: 'white'}}>Heroes</h1>
                 {this.state.heroes.map(hero => (
                     <LikedHeroes 
                     key={hero._id}
                     name={hero.name}
-                    class={hero.class}
-                    level={hero.level}
+                    link={hero.link}
                     /> 
                 )) } : <NoHeroes />
             </div>
