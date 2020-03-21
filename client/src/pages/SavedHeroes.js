@@ -5,7 +5,6 @@ import NoHeroes from '../components/NoHeroes/NoHeroes';
 class SavedHeroes extends Component {
     state = {
         heroes: [],
-        groups: [],
         showComponent: null,
         id: ''
     }
@@ -20,6 +19,19 @@ class SavedHeroes extends Component {
             })
     }
 
+    handleDelete = (event) => {
+        const deleteID = event;
+        console.log(deleteID + ' button clicked')
+        this.setState({
+            id: deleteID
+        })
+    }
+
+    componentDidUpdate() {
+        axios.post('/api/savedhero/'+this.state.id)
+      console.log(this.state.id +  " was submitted")
+    }
+
     render() {
         return(
             <div className="hero-section">
@@ -27,10 +39,12 @@ class SavedHeroes extends Component {
                 {this.state.heroes.map(hero => (
                     <LikedHeroes 
                     key={hero._id}
+                    id={hero._id}
                     name={hero.name}
                     link={hero.link}
+                    handleDelete={this.handleDelete}
                     /> 
-                )) } : <NoHeroes />
+                ))} : <NoHeroes />
             </div>
         )
     }
