@@ -10,13 +10,17 @@ class SavedHeroes extends Component {
     }
 
     componentDidMount() {
+       this.handleSavedHeroes();
+    }
+
+    handleSavedHeroes = () => {
         axios.get('/api/savedhero')
-            .then(response => {
-                this.setState({ heroes: response.data })
-                console.log(this.state.heroes)
-            }).catch((err) => {
-                console.log(err);
-            })
+        .then(response => {
+            this.setState({ heroes: response.data })
+            console.log(this.state.heroes)
+        }).catch((err) => {
+            console.log(err);
+        })
     }
 
     handleDelete = (event) => {
@@ -41,6 +45,8 @@ class SavedHeroes extends Component {
           'Access-Control-Allow-Origin': '*',
           'Access-Control-Allow-Methods': 'GET, POST, PUT, OPTIONS'
         }
+      }).then((res) => {
+          this.handleSavedHeroes()
       }) 
     }
 
@@ -56,7 +62,7 @@ class SavedHeroes extends Component {
                     link={hero.link}
                     handleDelete={this.handleDelete}
                     /> 
-                ))} : <NoHeroes />
+                ))}
             </div>
         )
     }
