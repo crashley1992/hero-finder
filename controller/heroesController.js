@@ -13,7 +13,7 @@ module.exports = {
     },
     findOne: function(req, res) {
         Heroes.findOne({_id: req.params._id})
-        .then(dbMondel => res.json(dbMondel))
+        .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err))
     },
     create: function(req, res) {
@@ -22,7 +22,7 @@ module.exports = {
         .catch(err => res.status(422).json(err));
     },
     remove: function(req, res) {
-        Heroes.findOne({_id: req.params._id}, req.body, {new: true})
+        Heroes.findByIdAndUpdate({_id: req.params.id})
         .then(dbModel => dbModel.remove())
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));

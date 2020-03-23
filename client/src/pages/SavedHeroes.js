@@ -28,8 +28,20 @@ class SavedHeroes extends Component {
     }
 
     componentDidUpdate() {
-        axios.post('/api/savedhero/'+this.state.id)
       console.log(this.state.id +  " was submitted")
+      axios({
+        method: 'PUT', 
+        contentType: "application/json",
+        crossDomain: true,
+        url: '/api/savedhero/'+this.state.id,
+        data: { 
+          _id: this.state.id
+        },
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, POST, PUT, OPTIONS'
+        }
+      }) 
     }
 
     render() {
