@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import LikedHeroes from '../components/LikedHeroes/LikedHeroes';
 import NoHeroes from '../components/NoHeroes/NoHeroes';
+import Footer from '../components/Footer/Footer';
 class SavedHeroes extends Component {
     state = {
         heroes: [],
@@ -54,7 +55,9 @@ class SavedHeroes extends Component {
         return(
             <div className="hero-section">
                 <h1 style={{textAlign: 'center', color: 'white'}}>Heroes</h1>
-                {this.state.heroes.map(hero => (
+                {this.state.heroes.length === 0 ? 
+                <NoHeroes /> :
+                this.state.heroes.map(hero => (
                     <LikedHeroes 
                     key={hero._id}
                     id={hero._id}
@@ -62,7 +65,8 @@ class SavedHeroes extends Component {
                     link={hero.link}
                     handleDelete={this.handleDelete}
                     /> 
-                ))}
+                ))
+                }
             </div>
         )
     }

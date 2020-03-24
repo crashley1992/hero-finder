@@ -5,6 +5,7 @@ import NavTabs from './components/NavTabs/NavTabs';
 import Home from './pages/Home';
 import SavedHeroes from './pages/SavedHeroes';
 import Search from './pages/Search';
+import Footer from './components/Footer/Footer';
 
 class App extends Component {
     render() {

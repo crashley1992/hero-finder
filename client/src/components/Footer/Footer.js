@@ -1,10 +1,11 @@
 import React from 'react';
 import './footer.css';
+import github from './github.png';
 
 const Footer = () => {
     return(
-        <div className="footer">
-
+        <div id="footer">
+            <p>By Ashley Clarke <a href="https://github.com/crashley1992" target="_blank" rel="noopener noreferrer" ><img src={github} id='github' /></a></p>
         </div>
     )
 }
