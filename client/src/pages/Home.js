@@ -5,8 +5,6 @@ const Home = () => {
     return(
         <div>
             <ImageCarouselDiv />
-
-            <Footer />
         </div>
     )
 }

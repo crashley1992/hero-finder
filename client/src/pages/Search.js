@@ -18,7 +18,8 @@ class Search extends Component {
         dataLoaded: false,
         randomDataLoaded: false,
         //Section for random results
-        randomResult: {}
+        randomResult: {},
+        hasError:  false
       }
     
          // function gets the name input from search form
