@@ -12,7 +12,7 @@ const LikedCharacters = (props) => {
                 props.handleDelete(event.target.id)
             }}>Remove</button>
             {/* FIND COMIC BUTTON */}
-            <button className='btn btn-success'>Find Comics</button>
+            <button className='btn btn-success' onClick={props.handleModal}>Find Comics</button>
         </Card.Body>
 </Card>
     )
