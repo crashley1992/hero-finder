@@ -9,16 +9,30 @@ require("dotenv").config();
 const router = express.Router();
 
 const apiKeyGoogle = process.env.API_KEY_GOOGLE;
-const search = "batman";
 
 router.post('/api/googlebooks', cors(), (req, res) => {
-    let apiQuery = `https://www.googleapis.com/books/v1/volumes?q=${search}&key=${apiKeyGoogle}`
-    console.log(apiQuery)
+    let nameSearch = req.body.nameSearch;
+    // let nameSearch = 'batman';
+    JSON.stringify(nameSearch);
+    console.log(nameSearch + " backend nameSearch");
+    let apiQuery = `https://www.googleapis.com/books/v1/volumes?q=${nameSearch}&key=${apiKeyGoogle}`
+    ///makes query to get data from google books api
+        axios.get(apiQuery, cors(), {
+            headers: {
+                'Access-Control-Expose-Headers': '*',
+                'Access-Control-Allow-Origin': '*'
+            },
+        params: {
+            apiKeyGoogle: process.env.API_KEY_GOOGLE,
+            nameSearch: nameSearch
+        }
+    }).then( (response) => {
+        const results = response.data
+        console.log(JSON.stringify(results) + " google books results");
+        res.json(results)
+    }).catch( (err) => {
+    console.log(err);
+    })
 });
 
-router.get('/api/googlebooks', cors(), (req, res) => {
-    let apiQuery = `https://www.googleapis.com/books/v1/volumes?q=${search}&key=${apiKeyGoogle}`
-    console.log(apiQuery)
-});
-    
 module.exports = router

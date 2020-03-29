@@ -9,7 +9,9 @@ class SavedHeroes extends Component {
         heroes: [],
         showComponent: false,
         id: '',
-        comics: []
+        comics: [],
+        nameSearch: '',
+        nameSearchUpdate: false
     }
     /***********************************************
      *Logic is for making liked heroes display and handling deletions
@@ -39,7 +41,7 @@ class SavedHeroes extends Component {
     }
 //when the state changes after a hero is removed, the page reloads the handleSavedHeroes to update the displayed info
     componentDidUpdate() {
-      console.log(this.state.id +  " was submitted")
+      console.log(this.state.id +  " id for deleting was submitted")
       axios({
         method: 'PUT', 
         contentType: "application/json",
@@ -61,12 +63,39 @@ class SavedHeroes extends Component {
      * Following functions will be logic for the comic search using google API
      * results display in a modal 
     *************************************************************************/
-    handleModal = () => {
+    //makes modal appear/ gives target value for axios
+    handleModal = (event) => {
         const doesShow = this.state.showComponent;
         this.setState({ showComponent: !doesShow })
-        console.log(this.state.showComponent + " find")
+        console.log(event.target.value + " value test")
+        this.setState({
+            nameSearch: event.target.value,
+            nameSearchUpdate: true
+        })
+        if (this.state.nameSearchUpdate === true) {
+            let nameSearch = this.state.nameSearch;
+            axios({
+                method: 'POST', 
+                contentType: "application/json",
+                crossDomain: true,
+                url: '/api/googlebooks',
+                data: { 
+                    nameSearch: nameSearch
+                },
+                headers: {
+                  'Access-Control-Allow-Origin': '*',
+                  'Access-Control-Allow-Methods': 'GET, POST, PUT, OPTIONS'
+                }
+              }).then((response) => {
+                  console.log(response.data)
+                  this.setState({comics: response.data})
+              })
+        }
     }
 
+    
+    
+    //closes modal
     handleClose = () => {
         const doesShow = this.state.showComponent;
         this.setState({ showComponent: !doesShow })
@@ -87,6 +116,7 @@ class SavedHeroes extends Component {
                     link={hero.link}
                     handleDelete={this.handleDelete}
                     handleModal={this.handleModal}
+                    handleNameInput={this.handleNameInput}
                     /> 
                 ))}
                 {this.state.showComponent === true ? 
