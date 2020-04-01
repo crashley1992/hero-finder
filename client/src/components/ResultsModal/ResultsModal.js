@@ -2,6 +2,7 @@ import React from 'react';
 import './results-modal.css';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import GoogleResults from '../GoogleResults/GoogleResults';
 
 const ResultsModal = (props) => {
 
@@ -12,7 +13,7 @@ const ResultsModal = (props) => {
                         </Modal.Header>
 
                         <Modal.Body>
-                            Google API results will display here.
+                        <GoogleResults />
                         </Modal.Body>
 
                         <Modal.Footer>

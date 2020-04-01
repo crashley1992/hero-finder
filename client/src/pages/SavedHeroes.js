@@ -4,6 +4,7 @@ import LikedHeroes from '../components/LikedHeroes/LikedHeroes';
 import NoHeroes from '../components/NoHeroes/NoHeroes';
 import Footer from '../components/Footer/Footer';
 import ResultsModal from '../components/ResultsModal/ResultsModal';
+import GoogleResults from '../components/GoogleResults/GoogleResults';
 class SavedHeroes extends Component {
     state = {
         heroes: [],
@@ -11,7 +12,8 @@ class SavedHeroes extends Component {
         id: '',
         comics: [],
         nameSearch: '',
-        nameSearchUpdate: false
+        nameSearchUpdate: false,
+        googleDataLoaded: false
     }
     /***********************************************
      *Logic is for making liked heroes display and handling deletions
@@ -87,19 +89,29 @@ class SavedHeroes extends Component {
                   'Access-Control-Allow-Methods': 'GET, POST, PUT, OPTIONS'
                 }
               }).then((response) => {
-                  console.log(response.data)
-                  this.setState({comics: response.data})
+                  console.log(response.data.items)
+                  let results = response.data.items;
+                  this.setState({comics: results})
+                  console.log(this.state.comics + " test")
               })
         }
     }
 
-    
-    
     //closes modal
     handleClose = () => {
         const doesShow = this.state.showComponent;
         this.setState({ showComponent: !doesShow })
         console.log(this.state.showComponent + " close")
+    }
+
+    //dataloaded 
+    googleDataLoaded = () => {
+        if (this.state.comics.length >= 1) {
+            this.setState({
+                googleDataLoaded: true
+            })
+            console.log(" google data loaded")
+           }
     }
 
     render() {
@@ -119,10 +131,18 @@ class SavedHeroes extends Component {
                     handleNameInput={this.handleNameInput}
                     /> 
                 ))}
+                {/* Handler that closes modal */}
                 {this.state.showComponent === true ? 
                 <ResultsModal 
                     handleClose={this.handleClose}
                 /> : null}
+                {/* Results that appear in the modal from the Google API */}
+                {this.state.googleDataLoaded ? this.state.comics.map(comic => (
+                <GoogleResults 
+                    key={comic.id}
+                    id={comic.id}
+                />
+                )) : null} 
             </div>
         )
     }
