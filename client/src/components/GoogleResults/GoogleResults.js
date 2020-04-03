@@ -4,6 +4,7 @@ const GoogleResults = (props) => {
     return(
         <div>
             <h1>{props.key}</h1>
+            <p>J</p>
         </div>
     )
 }

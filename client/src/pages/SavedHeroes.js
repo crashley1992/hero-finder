@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import LikedHeroes from '../components/LikedHeroes/LikedHeroes';
 import NoHeroes from '../components/NoHeroes/NoHeroes';
-import Footer from '../components/Footer/Footer';
 import ResultsModal from '../components/ResultsModal/ResultsModal';
 import GoogleResults from '../components/GoogleResults/GoogleResults';
 class SavedHeroes extends Component {
@@ -43,7 +42,8 @@ class SavedHeroes extends Component {
     }
 //when the state changes after a hero is removed, the page reloads the handleSavedHeroes to update the displayed info
     componentDidUpdate() {
-      console.log(this.state.id +  " id for deleting was submitted")
+        if( this.state.id !== '' ) {
+            console.log(this.state.id +  " id for deleting was submitted")
       axios({
         method: 'PUT', 
         contentType: "application/json",
@@ -58,7 +58,10 @@ class SavedHeroes extends Component {
         }
       }).then((res) => {
           this.handleSavedHeroes()
+      }).catch((err) => {
+          console.log(err)
       }) 
+        }
     }
 
     /************************************************************************* 
@@ -91,8 +94,12 @@ class SavedHeroes extends Component {
               }).then((response) => {
                   console.log(response.data.items)
                   let results = response.data.items;
+                  console.log(results.toString())
                   this.setState({comics: results})
-                  console.log(this.state.comics + " test")
+                  console.log(this.state.comics[0].volumeInfo.authors[0] + " test")
+                  
+              }).catch((err) => {
+                  console.log(err);
               })
         }
     }
@@ -137,8 +144,8 @@ class SavedHeroes extends Component {
                     handleClose={this.handleClose}
                 /> : null}
                 {/* Results that appear in the modal from the Google API */}
-                {this.state.googleDataLoaded ? this.state.comics.map(comic => (
-                <GoogleResults 
+                 {this.state.googleDataLoaded ? this.state.comics.map(comic => (
+                 <GoogleResults 
                     key={comic.id}
                     id={comic.id}
                 />
