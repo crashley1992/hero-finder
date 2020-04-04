@@ -9,10 +9,8 @@ class SavedHeroes extends Component {
         heroes: [],
         showComponent: false,
         id: '',
-        comics: [],
         nameSearch: '',
         nameSearchUpdate: false,
-        googleDataLoaded: false
     }
     /***********************************************
      *Logic is for making liked heroes display and handling deletions
@@ -77,31 +75,6 @@ class SavedHeroes extends Component {
             nameSearch: event.target.value,
             nameSearchUpdate: true
         })
-        if (this.state.nameSearchUpdate === true) {
-            let nameSearch = this.state.nameSearch;
-            axios({
-                method: 'POST', 
-                contentType: "application/json",
-                crossDomain: true,
-                url: '/api/googlebooks',
-                data: { 
-                    nameSearch: nameSearch
-                },
-                headers: {
-                  'Access-Control-Allow-Origin': '*',
-                  'Access-Control-Allow-Methods': 'GET, POST, PUT, OPTIONS'
-                }
-              }).then((response) => {
-                  console.log(response.data.items)
-                  let results = response.data.items;
-                  console.log(results.toString())
-                  this.setState({comics: results})
-                  console.log(this.state.comics[0].volumeInfo.authors[0] + " test")
-                  
-              }).catch((err) => {
-                  console.log(err);
-              })
-        }
     }
 
     //closes modal
@@ -111,15 +84,6 @@ class SavedHeroes extends Component {
         console.log(this.state.showComponent + " close")
     }
 
-    //dataloaded 
-    googleDataLoaded = () => {
-        if (this.state.comics.length >= 1) {
-            this.setState({
-                googleDataLoaded: true
-            })
-            console.log(" google data loaded")
-           }
-    }
 
     render() {
         return(
@@ -143,13 +107,12 @@ class SavedHeroes extends Component {
                 <ResultsModal 
                     handleClose={this.handleClose}
                 /> : null}
-                {/* Results that appear in the modal from the Google API */}
-                 {this.state.googleDataLoaded ? this.state.comics.map(comic => (
-                 <GoogleResults 
-                    key={comic.id}
-                    id={comic.id}
-                />
-                )) : null} 
+                {/* Passes hero name to Google Results */}
+                {this.state.nameSearch === '' ? null : 
+                <GoogleResults 
+                    nameSearch={this.state.nameSearch}
+                    handleModal={this.handleModal}
+                />}
             </div>
         )
     }
