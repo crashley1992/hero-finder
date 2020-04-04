@@ -3,12 +3,22 @@ import axios from 'axios';
 import ComicBook from '../ComicBook/ComicBook';
 import NoHeroes from '../NoHeroes/NoHeroes';
 
+
 class GoogleResults extends Component {
     state ={
         comicBooks: [],
         googleDataLoaded: false,
         nameSearch: this.props.nameSearch
     }
+
+        componentDidMount() {
+            console.log(this.state.nameSearch + " state")
+            console.log(this.props.nameSearch + " props")
+            if (this.state.nameSearch !== undefined) {
+                console.log(this.state.nameSearch + " has updated")
+                this.handleGoogleData()
+            }
+        }
 
         handleGoogleData = () => {
                 let nameSearch = this.state.nameSearch;

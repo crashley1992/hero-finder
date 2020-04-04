@@ -102,8 +102,8 @@ class SavedHeroes extends Component {
                     handleNameInput={this.handleNameInput}
                     /> 
                 ))}
-                {/* Handler that closes modal */}
-                {this.state.showComponent === true ? 
+                     {/* Handler that closes modal */}
+                     {this.state.showComponent === true ? 
                 <ResultsModal 
                     handleClose={this.handleClose}
                 /> : null}
