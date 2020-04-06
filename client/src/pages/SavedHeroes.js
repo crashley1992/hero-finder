@@ -4,6 +4,7 @@ import LikedHeroes from '../components/LikedHeroes/LikedHeroes';
 import NoHeroes from '../components/NoHeroes/NoHeroes';
 import ResultsModal from '../components/ResultsModal/ResultsModal';
 import GoogleResults from '../components/GoogleResults/GoogleResults';
+import ComicBook from '../components/ComicBook/ComicBook';
 class SavedHeroes extends Component {
     state = {
         heroes: [],
@@ -102,8 +103,8 @@ class SavedHeroes extends Component {
                     handleNameInput={this.handleNameInput}
                     /> 
                 ))}
-                     {/* Handler that closes modal */}
-                     {this.state.showComponent === true ? 
+                {/* Handler that closes modal */}
+                {this.state.showComponent === true ? 
                 <ResultsModal 
                     handleClose={this.handleClose}
                 /> : null}

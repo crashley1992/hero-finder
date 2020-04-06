@@ -13,8 +13,7 @@ const ResultsModal = (props) => {
                     <Button variant="secondary" onClick={props.handleClose}>Close</Button>
                 </Modal.Header>
                 <Modal.Body>
-                <GoogleResults />
-                <ComicBook />
+               <GoogleResults />
                 </Modal.Body>
                 <Modal.Footer>
                 <Button variant="secondary" onClick={props.handleClose}>Close</Button>

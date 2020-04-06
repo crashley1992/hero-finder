@@ -8,7 +8,7 @@ class GoogleResults extends Component {
     state ={
         comicBooks: [],
         googleDataLoaded: false,
-        nameSearch: this.props.nameSearch
+        nameSearch: this.props.nameSearch,
     }
 
         componentDidMount() {
@@ -46,11 +46,21 @@ class GoogleResults extends Component {
                 })
         }
 
+          //dataloaded 
+            googleDataLoaded = () => {
+                if (this.state.comics.length >= 1) {
+                    this.setState({
+                        googleDataLoaded: true
+                    })
+                    console.log(" google data loaded")
+                }
+            }
+
         
     render() {           
         return(
             <div>
-             {this.state.comicBooks === 0 ? <NoHeroes /> :
+             {this.state.comicBooks.length === 0 ? <NoHeroes /> :
              this.state.comicBooks.map(comic => (
                  <ComicBook 
                     key={comic.id}

@@ -52,7 +52,7 @@ class RandomResults extends Component {
                {aliasList}
             </ul>
             <p><strong>Hero Base:</strong> {this.props.base}</p>
-            <button className="btn btn-secondary" onClick={this.handleLiked, this.props.handleGoogleData}>{like}</button>
+            <button className="btn btn-secondary" onClick={this.handleLiked}>{like}</button>
         </Card.Body>
 </Card>
         </div>
